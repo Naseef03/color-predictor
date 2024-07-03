@@ -1,6 +1,6 @@
 def save_row(row, file_path="data.csv"):
     # Check the length of row
-    if len(row) != 11:
+    if len(row) != 10:
         print("Length of data should be 11")
         return
     
@@ -15,3 +15,16 @@ def load_data(file_path="data.csv"):
         for row in file.readlines():
             data.append([int(i) for i in row.strip("\n").split(", ")])
     return data
+
+def save_continues_data(file_path="data.csv"):
+    print("Enter the label line by line:")
+    row = []
+    while True:
+        label = input(str(len(row) + 1) + ": ")
+        if label == "q":
+            return
+        
+        row.append(int(label))
+        if len(row) == 10:
+            save_row(row)
+            row.pop(0)
